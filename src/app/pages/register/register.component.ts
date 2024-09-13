@@ -1,14 +1,15 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../../service/user.service';
-import { Router } from 'express';
+import { Router } from '@angular/router';
+import { Injectable } from '@angular/core';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
   userobject:any ={
@@ -36,40 +37,12 @@ export class RegisterComponent {
         alert('error');
       }
     },
-    // (error) => {                             
-    //   alert('Invalid username and or password')
-    //   console.log(error);
-    // }
-    );
-    
-  }
-  userobject1 : any={
-    username:'',
-    password:''
-
-  }
-  userService1 = inject(UserService)
-  router1 =inject(Router)
-  doLogin()
-  {
-    this.userService1.onLoginSubmit(this.userobject)
-    .subscribe((result:any) =>
-    {
-      
-      console.log(result);
-      if( result && result.token)
-      {
-        this.router1.navigateByUrl("admin_dash");
-      }
-      else
-      {
-        alert('error');
-      }
-    },
     (error) => {                             
       alert('Invalid username and or password')
       console.log(error);
     }
     );
+    
   }
+
 }
